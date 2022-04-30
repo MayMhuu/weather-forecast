@@ -1,0 +1,13 @@
+export const variable = {
+  PRIMARY_COLOR: "#00507B",
+  PRIMARY_DARK: "#000000",
+  PRIMARY_WHITE: "#FFFFFF",
+  PRIMARY_MEDIUM: "#D9D9D9",
+  FONTSIZE_5: "20px",
+  FONTSIZE_30: "30px",
+  RADIUS_5: "20px",
+  HEIGHT_PRIMARY: "50px",
+  WIDTH_PRIMARY: "100%",
+  WIDTH_SECOND:"200px",
+  IMAGE_HEADER:"200px"
+};
