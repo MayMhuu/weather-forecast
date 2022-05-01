@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Icon } from "semantic-ui-react";
+import { Grid, Icon,Divider } from "semantic-ui-react";
 import styled from "styled-components";
 import LabelCom from "../components/Label/LabelCom";
 import ImageCom from "../components/Image/Image";
@@ -25,7 +25,7 @@ const Image = styled(ImageCom)`
 `;
 
 const StyledDiv = styled.div`
-background-color: rgba(255,255,255,0) !important;
+  background-color: rgba(255, 255, 255, 0) !important;
 `;
 
 const WeatherInformation = ({ data }) => {
@@ -45,7 +45,7 @@ const WeatherInformation = ({ data }) => {
       </LabelCom>
       <br />
       <Div></Div>
-      <LabelCom>Current Location</LabelCom>
+      <Divider horizontal> <LabelCom>Current Condation</LabelCom> </Divider>
       <Grid verticalAlign="middle">
         {currentWeather.data.weather.map((data, index) => {
           return (
@@ -67,7 +67,43 @@ const WeatherInformation = ({ data }) => {
       </Grid>
       <br />
       <Div></Div>
-      <LabelCom>5 day Weather Forecast</LabelCom>
+      <Divider horizontal> <LabelCom>Additional Information</LabelCom> </Divider>
+      <br />
+      <Div></Div>
+
+      <Grid stackable>
+        <Grid.Row style={{ padding: "0rem" }} columns={2}>
+          <Grid.Column>
+            <StyledLabel>
+            Humidity : {currentWeather.data.main.humidity} %
+            </StyledLabel>
+          </Grid.Column>
+          <Grid.Column>
+            <StyledLabel>
+              Visibility : {currentWeather.data.visibility} mb
+            </StyledLabel>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row style={{ padding: "0rem" }} columns={2}>
+          <Grid.Column>
+            <StyledLabel>
+              Feels like : {currentWeather.data.main.feels_like}
+            </StyledLabel>
+          </Grid.Column>
+          <Grid.Column>
+            <StyledLabel>
+              {" "}
+              <StyledLabel>
+                Temperature : {currentWeather.data.main.temp}
+              </StyledLabel>
+            </StyledLabel>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+      <br />
+      <Div></Div>
+      
+      <Divider horizontal> <LabelCom>5 day Weather Forecast</LabelCom> </Divider>
       <br />
       <Div></Div>
       <Grid verticalAlign="middle">
