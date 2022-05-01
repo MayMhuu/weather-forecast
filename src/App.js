@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
-import { HashRouter as Router } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import WeatherForecast from "./views/WeatherForecast";
 
 function App() {
   return (
-    <Router>
+    <HashRouter>
       <WeatherForecast />
-    </Router>
+    </HashRouter>
   );
 }
 
