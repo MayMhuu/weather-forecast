@@ -29,7 +29,6 @@ const StyledDiv = styled.div`
 `;
 
 const WeatherInformation = ({ data }) => {
-  console.log("dataXXX", data);
   let { currentWeather, fiveDaysWeather } = data;
   return (
     <StyledDiv>
