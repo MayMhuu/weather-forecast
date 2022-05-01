@@ -2,7 +2,7 @@ import { SUCCESS_FORECASTDATA, FAILED_FORECASTDATA,LOADING } from "../actions/ty
 const initialState = {
   error: null,
   dataList: null,
-  loading:true
+  loading:false
 };
 
 function forecastReducer(forecast = initialState, action) {
@@ -10,6 +10,7 @@ function forecastReducer(forecast = initialState, action) {
   switch (type) {
     case LOADING:
       return {
+        ...forecast,
         loading:true
       };
     case SUCCESS_FORECASTDATA:

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Grid, Segment, Container, Dimmer, Loader } from "semantic-ui-react";
+import { Grid, Segment, Dimmer, Loader } from "semantic-ui-react";
 import TextBoxCom from "../components/TextBox/TextBoxCom";
 import ButtonCom from "../components/Button/ButtonCom";
 import styled from "styled-components";
@@ -8,11 +8,11 @@ import { variable } from "../css/variable";
 import WeatherInformation from "./WeatherInformation";
 import { getForecastData } from "../actions/forecast";
 import { useDispatch, useSelector } from "react-redux";
+import bgImage from "../assets/images/Artboard1.png"
 
 const StyledSegment = styled(Segment)`
-background: transparent !important;
-border: ${props => props.borderStyle ? "0px !important" : "1px solid #fff"};
-box-shadow: ${props => props.borderStyle ? "0px 0px 0px 0px !important" : "0px 1px 2px 0px solid #fff "};
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  margin-top:20px !important;
 `;
 const StyledHeader = styled(LabelCom)`
   color: ${variable.PRIMARY_DARK};
@@ -25,13 +25,29 @@ const Div = styled.div`
 const StyledDimmer = styled(Dimmer)`
   background-color: transparent !important;
 `;
+const StyledContainer = styled.div`
+  background: url(${bgImage}) !important; 
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+`;
+
+const StyledDiv = styled.div`
+`;
+
+const StyledError = styled(LabelCom)`
+  color: ${variable.ERROR_COLOR};
+  font-weight: bold;
+  font-size: ${variable.FONTSIZE_5};
+`;
 
 const WeatherForecast = () => {
   const [name, setName] = useState("Thailand");
   const focusCity = useRef(null);
   const dispatch = useDispatch();
   const forecastData = useSelector((state) => state.forecast);
-  console.log("foreXXX", forecastData);
 
   useEffect(() => {
     dispatch(getForecastData(name));
@@ -43,12 +59,12 @@ const WeatherForecast = () => {
   };
 
   return (
-    <div>
-      <Grid stackable style={{ height: "100vh" }} verticalAlign="middle">
+    <StyledContainer>
+      <Grid stackable verticalAlign="middle"  textAlign="center">
         <Grid.Row>
-          <Grid.Column wdth={2}></Grid.Column>
-          <Grid.Column width={6}>
-            <Container>
+          <Grid.Column width={2}></Grid.Column>
+          <Grid.Column width={6} centered>
+            <StyledDiv>
               <StyledHeader>Weather Forecast</StyledHeader>
               <br />
               <Div></Div>
@@ -61,6 +77,7 @@ const WeatherForecast = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
+              <StyledError>{forecastData.error}</StyledError>
               <br />
               <Div></Div>
               <ButtonCom
@@ -68,18 +85,18 @@ const WeatherForecast = () => {
                 searchWeather={onSearchWeather}
                 size={"small"}
               />
-            </Container>
+            </StyledDiv>
           </Grid.Column>
-          <Grid.Column width={7}>
-            <StyledSegment borderStyle={forecastData.loading}>
-              {forecastData.dataList ? (
+          <Grid.Column width={7} textAlign="center" style={{ minHeight: 450,textAlign:'center' }}>
+            {forecastData.dataList ? (
+              <StyledSegment>
                 <WeatherInformation data={forecastData.dataList} />
-              ) : (
-                <div>{forecastData.error}</div>
-              )}
-            </StyledSegment>
+              </StyledSegment>
+            ) : (
+             < ></> 
+            )}
           </Grid.Column>
-          <Grid.Column wdth={1}></Grid.Column>
+          <Grid.Column width={1}></Grid.Column>
         </Grid.Row>
       </Grid>
       {forecastData.loading && (
@@ -110,7 +127,7 @@ const WeatherForecast = () => {
           </Grid>
         </div>
       )}
-    </div>
+    </StyledContainer>
   );
 };
 

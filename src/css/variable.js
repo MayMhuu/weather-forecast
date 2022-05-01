@@ -3,6 +3,7 @@ export const variable = {
   PRIMARY_DARK: "#000000",
   PRIMARY_WHITE: "#FFFFFF",
   PRIMARY_MEDIUM: "#D9D9D9",
+  ERROR_COLOR:"#fc1703",
   FONTSIZE_5: "20px",
   FONTSIZE_30: "30px",
   RADIUS_5: "20px",
@@ -11,3 +12,4 @@ export const variable = {
   WIDTH_SECOND:"200px",
   IMAGE_HEADER:"200px"
 };
+

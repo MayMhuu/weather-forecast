@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Segment, Icon, Divider } from "semantic-ui-react";
+import { Grid, Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import LabelCom from "../components/Label/LabelCom";
 import ImageCom from "../components/Image/Image";
@@ -11,6 +11,11 @@ const StyledHeader = styled(LabelCom)`
   font-size: ${variable.FONTSIZE_30};
 `;
 
+const StyledLabel = styled(LabelCom)`
+  color: ${variable.PRIMARY_COLOR};
+  font-weight: bold;
+`;
+
 const Div = styled.div`
   margin-top: 20px;
 `;
@@ -19,11 +24,15 @@ const Image = styled(ImageCom)`
   display: inline-block !important;
 `;
 
+const StyledDiv = styled.div`
+background-color: rgba(255,255,255,0) !important;
+`;
+
 const WeatherInformation = ({ data }) => {
   console.log("dataXXX", data);
   let { currentWeather, fiveDaysWeather } = data;
   return (
-    <div>
+    <StyledDiv>
       <Image name={currentWeather.data.weather[0].icon + "@2x"} />
       <br />
       <Div></Div>
@@ -40,33 +49,95 @@ const WeatherInformation = ({ data }) => {
       <Grid verticalAlign="middle">
         {currentWeather.data.weather.map((data, index) => {
           return (
-            <Grid.Row key={index}>
+            <Grid.Row key={index} style={{ paddingBottom: "0rem" }}>
               <Grid.Column width={2}></Grid.Column>
-              <Grid.Column width={4}>{data.main}</Grid.Column>
-              <Grid.Column width={4}>  <Image name={data.icon} /></Grid.Column>
-              <Grid.Column width={4}>{currentWeather.data.wind.deg} ° C
+              <Grid.Column width={4}>
+                <StyledLabel>{data.main}</StyledLabel>
+              </Grid.Column>
+              <Grid.Column width={4} textAlign="right">
+                <Image name={data.icon} />
+              </Grid.Column>
+              <Grid.Column width={4}>
+                <StyledLabel> {currentWeather.data.wind.deg} ° C</StyledLabel>
               </Grid.Column>
               <Grid.Column width={2}></Grid.Column>
             </Grid.Row>
           );
         })}
-        {/* {fiveDaysWeather.data.list.map((data, index) => {
-          return (
-            <Grid.Row height={"40px"} index={index}>
-              <Grid.Column width={4}>MON</Grid.Column>
-              <Grid.Column width={12}>
-                <Image name={data.weather[0].icon} />
-                {data.wind.deg} ° C
-              </Grid.Column>
-            </Grid.Row>
-          );
-        })} */}
-       
       </Grid>
       <br />
       <Div></Div>
-      <LabelCom>Addition Information</LabelCom>
-    </div>
+      <LabelCom>5 day Weather Forecast</LabelCom>
+      <br />
+      <Div></Div>
+      <Grid verticalAlign="middle">
+        <Grid.Row style={{ padding: "0rem" }}>
+          <Grid.Column width={2}></Grid.Column>
+          <Grid.Column width={4}>
+            <StyledLabel>MON</StyledLabel>
+          </Grid.Column>
+          <Grid.Column width={4} textAlign="right">
+            <Image name={fiveDaysWeather.data.list[0].weather[0].icon} />
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <StyledLabel>{fiveDaysWeather.data.list[0].wind.deg} °</StyledLabel>
+          </Grid.Column>
+          <Grid.Column width={2}></Grid.Column>
+        </Grid.Row>
+        <Grid.Row style={{ padding: "0rem" }}>
+          <Grid.Column width={2}></Grid.Column>
+          <Grid.Column width={4}>
+            <StyledLabel>TUE</StyledLabel>
+          </Grid.Column>
+          <Grid.Column width={4} textAlign="right">
+            <Image name={fiveDaysWeather.data.list[1].weather[0].icon} />
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <StyledLabel>{fiveDaysWeather.data.list[1].wind.deg} °</StyledLabel>
+          </Grid.Column>
+          <Grid.Column width={2}></Grid.Column>
+        </Grid.Row>
+        <Grid.Row style={{ padding: "0rem" }}>
+          <Grid.Column width={2}></Grid.Column>
+          <Grid.Column width={4}>
+            <StyledLabel>WED</StyledLabel>
+          </Grid.Column>
+          <Grid.Column width={4} textAlign="right">
+            <Image name={fiveDaysWeather.data.list[2].weather[0].icon} />
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <StyledLabel>{fiveDaysWeather.data.list[2].wind.deg} °</StyledLabel>
+          </Grid.Column>
+          <Grid.Column width={2}></Grid.Column>
+        </Grid.Row>
+        <Grid.Row style={{ padding: "0rem" }}>
+          <Grid.Column width={2}></Grid.Column>
+          <Grid.Column width={4}>
+            <StyledLabel>THURS</StyledLabel>
+          </Grid.Column>
+          <Grid.Column width={4} textAlign="right">
+            <Image name={fiveDaysWeather.data.list[3].weather[0].icon} />
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <StyledLabel>{fiveDaysWeather.data.list[3].wind.deg} °</StyledLabel>
+          </Grid.Column>
+          <Grid.Column width={2}></Grid.Column>
+        </Grid.Row>
+        <Grid.Row style={{ padding: "0rem" }}>
+          <Grid.Column width={2}></Grid.Column>
+          <Grid.Column width={4}>
+            <StyledLabel>FRI</StyledLabel>
+          </Grid.Column>
+          <Grid.Column width={4} textAlign="right">
+            <Image name={fiveDaysWeather.data.list[4].weather[0].icon} />
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <StyledLabel>{fiveDaysWeather.data.list[4].wind.deg} °</StyledLabel>
+          </Grid.Column>
+          <Grid.Column width={2}></Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </StyledDiv>
   );
 };
 

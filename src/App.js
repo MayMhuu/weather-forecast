@@ -1,13 +1,9 @@
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
 import WeatherForecast from "./views/WeatherForecast";
 
 function App() {
-  return (
-    <div className="App">
-      <WeatherForecast />
-    </div>
-  );
+  return <WeatherForecast />
 }
 
 export default App;
